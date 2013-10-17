@@ -24,24 +24,20 @@
 	</target>
 	<!-- compilar... -->
 	<target name="compila" description="Compila">
-		<javac includeantruntime="false" srcdir="${src}" destdir="${build}/main"
-			classpathref="classpath.test" />
-		<javac includeantruntime="false" srcdir="${test}" destdir="${build}/test"
-			classpathref="classpath.test" />
+		<javac includeantruntime="false" srcdir="${src}" destdir="${build}/main" classpathref="classpath.test" />
+		<javac includeantruntime="false" srcdir="${test}" destdir="${build}/test" classpathref="classpath.test" />
 	</target>
-	
+
 	<!-- Ejecutar checkstyle, salida por consola -->
 	<target name="checkstyle">
-	<taskdef resource="checkstyletask.properties"
-	classpath="${checkstyle.lib}" />
-	<checkstyle config="${checkstyle.checks}"
-	failureProperty="checkstyle.failure" failOnViolation="false">
-	<formatter type="xml" usefile="false" />
-	<fileset dir="${src}" includes="**/*.java" />
-	</checkstyle>
+		<taskdef resource="checkstyletask.properties" classpath="${checkstyle.lib}" />
+		<checkstyle config="${checkstyle.checks}" failureProperty="checkstyle.failure" failOnViolation="false">
+			<formatter type="xml" usefile="false" />
+			<fileset dir="${src}" includes="**/*.java" />
+		</checkstyle>
 	</target>
 	<!-- Principal... -->
-	<target name="test" depends="init, compila" description="Integracion Continua">
+	<target name="test" depends="init, compila, checkstyle" description="Integracion Continua">
 		<echo message="Integracion Continua..." />
 		<junit printsummary="on" fork="yes" haltonfailure="true">
 			<classpath refid="classpath.test" />
