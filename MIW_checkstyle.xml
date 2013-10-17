@@ -78,7 +78,7 @@
         <module name="RightCurly"/>
 
         <!-- Problemas de codificacion                       -->
-        <module name="DoubleCheckedLocking"/>
+<!--         <module name="DoubleCheckedLocking"/> -->
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
         <module name="IllegalInstantiation"/>
